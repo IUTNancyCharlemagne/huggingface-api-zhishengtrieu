@@ -13,6 +13,8 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'widgets.dart';
 import 'utils.dart';
+import 'about_page.dart';
+import 'version_page.dart';
 
 final List<String> imgList = [
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_leaf_blight/100023.jpg',
@@ -253,20 +255,21 @@ class _MyHomePageState extends State<MyHomePage> {
               ListTile(
                 title: const Text('About'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  Navigator.pop(context); 
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AboutPage()),
+                  );
                 },
               ),
               ListTile(
                 title: const Text('Version'),
                 onTap: () {
-                  // Update the state of the app
-                  
-                  // ...
-                  // Then close the drawer
                   Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => VersionPage()),
+                  );
                 },
               ),
             ],
@@ -368,25 +371,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           isClassifying = false;
                         },
                 ),
-              ),
-              Row(
-                children: [
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Linkify(
-                      onOpen: (link) async {
-                        if (await canLaunchUrl(Uri.parse(link.url))) {
-                          await launchUrl(Uri.parse(link.url));
-                        } else {
-                          throw 'Could not launch $link';
-                        }
-                      },
-                      text: "Made by https://dicksonneoh.com",
-                    ),
-                  ),
-                  const Spacer(),
-                ],
               ),
             ],
           ),
