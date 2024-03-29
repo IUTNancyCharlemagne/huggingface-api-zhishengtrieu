@@ -1,4 +1,4 @@
-# rice_deseases
+# Planet Classifier App
 
 A new Flutter project.
 

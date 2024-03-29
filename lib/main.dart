@@ -21,20 +21,11 @@ final List<String> imgList = [
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_leaf_streak/100084.jpg',
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_panicle_blight/100043.jpg',
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_panicle_blight/100058.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/blast/100004.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/blast/100006.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/brown_spot/100022.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/brown_spot/100001.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/dead_heart/100008.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/dead_heart/100020.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/downy_mildew/100031.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/downy_mildew/100017.jpg',
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/hispa/100003.jpg',
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/hispa/100005.jpg',
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/normal/100007.jpg',
   'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/normal/100002.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/tungro/100011.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/tungro/100013.jpg'
+  'assets/images/earth/image.jpg',
 ];
 
 void main() {
@@ -48,11 +39,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Paddy Disease Classifier',
+      title: 'Planet Classifier',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Paddy Disease Classifier'),
+      home: const MyHomePage(title: 'Planet Classifier'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -249,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
-                child: Text('My Paddy Disease App'),
+                child: Text('My Planet Classifier App'),
               ),
               ListTile(
                 title: const Text('About'),
