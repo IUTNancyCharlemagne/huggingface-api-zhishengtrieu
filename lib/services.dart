@@ -5,8 +5,8 @@ Future<Map> classifyRiceImage(String imageBase64) async {
   // Animefy the given image by requesting the gradio API of AnimeGANv2
   final response = await http.post(
     Uri.parse(
-        //'https://dnth-edgenext-paddy-disease-classifie-dc60651.hf.space/run/predict'),
-        'https://abidlabs-keras-image-classifier.hf.space/run/predict'),
+        'https://harshasurampudi-which-planet.hf.space/run/predict'),
+        //'https://abidlabs-keras-image-classifier.hf.space/run/predict'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
