@@ -162,6 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Create a list of widgets to be displayed in the carousel
+    // images can be fetched from the internet or local assets
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
               margin: const EdgeInsets.all(5.0),
@@ -238,9 +240,15 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: const Color(0xff120690),
                 ),
-                child: Text('My Planet Classifier App'),
+                child: Text(
+                  'My Planet Classifier App',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
               ),
               ListTile(
                 title: const Text('About'),
@@ -255,6 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: const Text('Version'),
                 onTap: () {
                   // Update the state of the app
+                  
                   // ...
                   // Then close the drawer
                   Navigator.pop(context);
