@@ -16,8 +16,7 @@ import 'utils.dart';
 import 'about_page.dart';
 import 'version_page.dart';
 
-final List<String> imgList = [
-  'https://upload.wikimedia.org/wikipedia/commons/c/cb/The_Blue_Marble_%28remastered%29.jpg',
+final List<String> earthList = [
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/earth.jpg',
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(10).jpg',
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(11).jpg',
@@ -29,7 +28,18 @@ final List<String> imgList = [
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(9).jpg'
 ];
 
-final List<String> imgMercury = [
+final List<String> imgList = [
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
   '',
 ];
 
@@ -165,12 +175,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // Create a list of widgets to be displayed in the carousel
-    // images can be fetched from the internet or local assets
-    final List<Widget> imageSliders = imgList
-        .map((item) => Container(
+  /**
+    * Create a list of widgets to be displayed in the carousel
+   */
+  List<Widget> createCarousel(List<String> list){
+    return list.map<Widget>((item) => Container(
               margin: const EdgeInsets.all(5.0),
               child: Stack(
                 children: <Widget>[
@@ -208,10 +217,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  Text(
+                    'GT: ${imgList[imgList.indexOf(item)].split('/').reversed.elementAt(1)}', // get the class name from url
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ))
         .toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Create a list of widgets to be displayed in the carousel
+    final List<Widget> imageSliders = createCarousel(earthList);
+    final List<Widget> imageSliders2 = createCarousel(imgList);
+
 
     return LoaderOverlay(
       child: Scaffold(
@@ -308,6 +333,18 @@ class _MyHomePageState extends State<MyHomePage> {
               Text("Latency: $_latency ms",
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 8),
+              Text("Earth", style: Theme.of(context).textTheme.titleLarge),
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 180,
+                  autoPlay: true,
+                  // aspectRatio: 2.5,
+                  viewportFraction: 0.4,
+                  enlargeCenterPage: false,
+                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                ),
+                items: imageSliders,
+              ),
               Text("Samples", style: Theme.of(context).textTheme.titleLarge),
               CarouselSlider(
                 options: CarouselOptions(
