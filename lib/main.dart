@@ -29,18 +29,14 @@ final List<String> earthList = [
 ];
 
 final List<String> imgList = [
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/venus/Venus_globe.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/venus/20110914150850-vnusplante.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/venus/09911-feature3-venus.jpeg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mercury/Mercury_in_true_color.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mercury/Mercury_JeffR.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mars/mars-1.png',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mars/is_mars-planete.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mars/1920x1080.jpg',
 ];
 
 void main() {
@@ -187,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () async {
                       context.loaderOverlay.show();
 
-                      String imgUrl = imgList[imgList.indexOf(item)];
+                      String imgUrl = list[list.indexOf(item)];
 
                       final imgFile;
                       if (imgUrl.startsWith('assets')) {
@@ -218,7 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Text(
-                    'GT: ${imgList[imgList.indexOf(item)].split('/').reversed.elementAt(1)}', // get the class name from url
+                    'GT: ${list[list.indexOf(item)].split('/').reversed.elementAt(1)}', // get the class name from url
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15.0,
@@ -355,7 +351,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   enlargeCenterPage: false,
                   enlargeStrategy: CenterPageEnlargeStrategy.height,
                 ),
-                items: imageSliders,
+                items: imageSliders2,
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
