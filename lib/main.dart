@@ -15,6 +15,8 @@ import 'widgets.dart';
 import 'utils.dart';
 import 'about_page.dart';
 import 'version_page.dart';
+import 'history_page.dart';
+import 'history_item.dart';
 
 final List<String> earthList = [
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/earth.jpg',
@@ -37,6 +39,14 @@ final List<String> imgList = [
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mars/mars-1.png',
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mars/is_mars-planete.jpg',
   'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/mars/1920x1080.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/jupiter/Hubble%E2%80%99s_observation_of_Jupiter_in_2021.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/jupiter/Jupiter.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/uranus/uranus.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/uranus/35090607.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/neptune/neptune-1.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/neptune/Neptune_-_Voyager_2.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/saturn/planet_saturn.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/saturn/img.jpg',
 ];
 
 void main() {
@@ -70,6 +80,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<HistoryItem> historyItems = [];
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
 
@@ -279,6 +290,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
               ),
+              ListTile(
+                title: const Text('Historique'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HistoryPage(historyItems: historyItems,)),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -384,6 +405,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   stopwatch.elapsed.inMilliseconds.toString();
                             });
                             _btnController.success();
+                            // on enregistre le résultat dans l'historique
+                            if (imageURI != null) {
+                              historyItems.add(HistoryItem(
+                                image: imageURI!,
+                                result: _resultDict['confidences'][0]['label'],
+                                date: DateTime.now(),
+                              ));
+                            }
                           } catch (e) {
                             _btnController.error();
                           }
