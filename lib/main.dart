@@ -17,17 +17,20 @@ import 'about_page.dart';
 import 'version_page.dart';
 
 final List<String> imgList = [
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_leaf_blight/100023.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_leaf_blight/100049.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_leaf_streak/100042.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_leaf_streak/100084.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_panicle_blight/100043.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/bacterial_panicle_blight/100058.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/hispa/100003.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/hispa/100005.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/normal/100007.jpg',
-  'https://raw.githubusercontent.com/dnth/huggingface-timm-mobile-blogpost/main/sample_images/normal/100002.jpg',
-  'assets/images/earth/image.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/c/cb/The_Blue_Marble_%28remastered%29.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/earth.jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(10).jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(11).jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(2).jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(4).jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(8).jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(5).jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(6).jpg',
+  'https://raw.githubusercontent.com/IUTNancyCharlemagne/huggingface-api-zhishengtrieu/main/assets/images/earth/images%20(9).jpg'
+];
+
+final List<String> imgMercury = [
+  '',
 ];
 
 void main() {
@@ -179,7 +182,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           String imgUrl = imgList[imgList.indexOf(item)];
 
-                          final imgFile = await getImage(imgUrl);
+                          final imgFile;
+                          if (imgUrl.startsWith('assets')) {
+                            imgFile = File(imgUrl);
+                            print('imgFile: $imgFile');
+                          }else{
+                            imgFile = await getImage(imgUrl);
+                          }
 
                           setState(() {
                             imageURI = imgFile;
@@ -215,14 +224,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           padding: const EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 20.0),
-                          child: Text(
-                            'GT: ${imgList[imgList.indexOf(item)].split('/').reversed.elementAt(1)}', // get the class name from url
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
                         ),
                       ),
                     ],
@@ -242,7 +243,10 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: const Color(0xff120690),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/earth/earth.jpg"), 
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 child: Text(
                   'My Planet Classifier App',
