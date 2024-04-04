@@ -172,62 +172,44 @@ class _MyHomePageState extends State<MyHomePage> {
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
               margin: const EdgeInsets.all(5.0),
-              child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  child: Stack(
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () async {
-                          context.loaderOverlay.show();
+              child: Stack(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () async {
+                      context.loaderOverlay.show();
 
-                          String imgUrl = imgList[imgList.indexOf(item)];
+                      String imgUrl = imgList[imgList.indexOf(item)];
 
-                          final imgFile;
-                          if (imgUrl.startsWith('assets')) {
-                            imgFile = File(imgUrl);
-                            print('imgFile: $imgFile');
-                          }else{
-                            imgFile = await getImage(imgUrl);
-                          }
+                      final imgFile;
+                      if (imgUrl.startsWith('assets')) {
+                        imgFile = File(imgUrl);
+                        print('imgFile: $imgFile');
+                      }else{
+                        imgFile = await getImage(imgUrl);
+                      }
 
-                          setState(() {
-                            imageURI = imgFile;
-                            _btnController.stop();
-                            isClassifying = false;
-                            clearInferenceResults();
-                          });
-                          context.loaderOverlay.hide();
-                        },
-                        child: CachedNetworkImage(
-                          imageUrl: item,
-                          fit: BoxFit.fill,
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
+                      setState(() {
+                        imageURI = imgFile;
+                        _btnController.stop();
+                        isClassifying = false;
+                        clearInferenceResults();
+                      });
+                      context.loaderOverlay.hide();
+                    },
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                      child: CachedNetworkImage(
+                        imageUrl: item,
+                        fit: BoxFit.fill,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
-                      Positioned(
-                        bottom: 0.0,
-                        left: 0.0,
-                        right: 0.0,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(200, 0, 0, 0),
-                                Color.fromARGB(0, 0, 0, 0)
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            ),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 20.0),
-                        ),
-                      ),
-                    ],
-                  )),
+                    ),
+                  ),
+                ],
+              ),
             ))
         .toList();
 
@@ -360,7 +342,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           try {
                             Stopwatch stopwatch = Stopwatch()..start();
-                            final result = await classifyRiceImage(base64Image);
+                            final result = await classifyImage(base64Image);
 
                             setState(() {
                               _resultString = parseResultsIntoString(result);
