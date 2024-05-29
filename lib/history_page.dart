@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'history_item.dart';
-import 'dart:io';
 
 class HistoryPage extends StatefulWidget {
   final List<HistoryItem> historyItems;
